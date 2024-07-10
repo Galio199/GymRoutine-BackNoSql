@@ -18,6 +18,9 @@ public class Rutina {
 
     @Id
     private String id;
+    @Field("id_usuario")
+    private String idUsuario;
+    private String username;
     private String nombre;
     @Field("tipo_rutina")
     private List<String> tipoRutina;

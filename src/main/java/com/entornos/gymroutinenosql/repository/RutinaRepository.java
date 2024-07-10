@@ -10,13 +10,20 @@ import java.util.List;
 @Repository
 
 public interface RutinaRepository extends MongoRepository<Rutina, String> {
-
+    /*
     //Listar todas las rutinas ordenadas por dificultad
     List<Rutina> findAllByOrderByOrdenDificultad();
+     */
 
-    //Listar los ejercicios filtrados por el tipo o la dificultad
+    //Listar todas las rutinas filtradas por el tipo y/o la dificultad ordenadas por dificultad
     @Query("{ $and: [ { $or: [ { 'tipoRutina': { $elemMatch: { $in: ?0 } } }, { ?0: null } ] }, " +
             "{ $or: [ { 'dificultad': ?1 }, { ?1: null } ] } ] }")
-    List<Rutina>findByTipoRutinaAndDificultadRutina(String tipoRutina, String dificultadRutina);
+    List<Rutina>findByTipoRutinaAndDificultadRutinaOrderByOrdenDificultad(String tipoRutina, String dificultadRutina);
+
+    //Listar las rutinas que ha creado un usuario por el username
+    List<Rutina> findByUsername(String username);
+
+    //Listar las rutinas que ha creado un usuario por el id del usuario
+    List<Rutina> findByIdUsuario(String idUsuario);
 
 }
