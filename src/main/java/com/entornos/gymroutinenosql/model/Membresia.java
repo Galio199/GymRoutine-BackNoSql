@@ -12,16 +12,16 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(value = "usuarios")
+@Document(value = "membresia")
 
-public class Usuario {
+public class Membresia {
 
     @Id
     private String id;
-    private String username;
-    private String nombre;
-    private String apellido;
-    @Field("fecha_creacion")
-    private LocalDateTime fechaCreacion;
+    private String idUsuario;
+    @Field("fecha_inicio")
+    private LocalDateTime fechaInicio;
+    @Field("fecha_fin")
+    private LocalDateTime fechaFin;
 
 }

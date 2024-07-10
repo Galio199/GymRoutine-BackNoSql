@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class UsuarioService implements IUsuarioService {
+
     @Autowired
     UsuarioRepository usuarioRepository;
 

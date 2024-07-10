@@ -7,21 +7,26 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(value = "usuarios")
+@Document(value = "rutina")
 
-public class Usuario {
+public class Rutina {
 
     @Id
     private String id;
-    private String username;
     private String nombre;
-    private String apellido;
-    @Field("fecha_creacion")
-    private LocalDateTime fechaCreacion;
+    @Field("tipo_rutina")
+    private List<String> tipoRutina;
+    @Field("dificultad_rutina")
+    private String dificultadRutina;
+    @Field("orden_dificultad")
+    private int ordenDificultad;
+    private String dia;
+    private boolean publicada;
+    private List<String> ejercicios;
 
 }
