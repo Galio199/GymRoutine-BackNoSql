@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @Transactional
@@ -45,8 +46,8 @@ public class UsuarioService implements IUsuarioService {
 
     //Buscar un usuario por el nombre de usuario
     @Override
-    public Usuario buscarUsuarioByUsername(String username) {
-        return usuarioRepository.findByUsername(username);
+    public List<Usuario> buscarUsuarioByUsername(String username) {
+        return usuarioRepository.findByUsernameContaining(username);
     }
 
     //Verificar si se encontro un usuario con ese username y contraseña
