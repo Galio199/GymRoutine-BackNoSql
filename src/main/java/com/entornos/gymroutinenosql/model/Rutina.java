@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.mongodb.core.mapping.FieldType;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class Rutina {
 
     @Id
     private String id;
-    @Field("id_usuario")
+    @Field(name = "id_usuario", targetType = FieldType.OBJECT_ID)
     private String idUsuario;
     private String username;
     private String nombre;
@@ -30,6 +31,6 @@ public class Rutina {
     private int ordenDificultad;
     private String dia;
     private boolean publicada;
-    private List<String> ejercicios;
+    private List<Ejercicio> ejercicios;
 
 }

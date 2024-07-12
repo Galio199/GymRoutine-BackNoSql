@@ -19,19 +19,36 @@ public class RutinaService implements IRutinaService {
     //Listar las rutinas publicadas filtradas por el tipo y/o la dificultad ordenadas por dificultad
     @Override
     public List<Rutina> listarRutinas(String tipoRutina, String dificultadRutina) {
-        return rutinaRepository.findByTipoRutinaAndDificultadRutinaAndPublicadaOrderByOrdenDificultad(tipoRutina, dificultadRutina, true);
+
+        //Comprobar si ambos parametros son nulos
+        if (tipoRutina == null && dificultadRutina == null) {
+            return rutinaRepository.findAllByOrderByOrdenDificultad();
+        }
+
+        //comprobar si se filtra por ambos parametros
+        if (tipoRutina != null && dificultadRutina != null) {
+            return rutinaRepository.findByTipoRutinaContainingAndDificultadRutinaOrderByOrdenDificultad(tipoRutina,dificultadRutina);
+        }
+
+        //Comprobar si se filtra por tipo de lo contrario filtrar por dificultad
+        if (tipoRutina != null){
+            return rutinaRepository.findByTipoRutinaContainingOrderByOrdenDificultad(tipoRutina);
+        }else {
+            return rutinaRepository.findByDificultadRutinaOrderByOrdenDificultad(dificultadRutina);
+        }
+
     }
 
     //Listar las rutinas publicadas que ha creado otro usuario por el username
     @Override
     public List<Rutina> listarRutinasByUsername(String username) {
-        return rutinaRepository.findByUsernameAndPublicada(username, true);
+        return rutinaRepository.findByUsernameAndPublicadaOrderByOrdenDificultad(username, true);
     }
 
     //Listar las rutinas por el id del usuario loggeado
     @Override
     public List<Rutina> listarRutinasByIdUsuario(String idUsuario) {
-        return rutinaRepository.findByIdUsuario(idUsuario);
+        return rutinaRepository.findByIdUsuarioOrderByOrdenDificultad(idUsuario);
     }
 
     //Guardar una rutina o actualizar una existente
@@ -49,7 +66,7 @@ public class RutinaService implements IRutinaService {
 
     //Buscar una rutina especifica por el id
     @Override
-    public Rutina buscarRutina(String id){
+    public Rutina buscarRutina(String id) {
         return rutinaRepository.findById(id).orElse(null);
     }
 }

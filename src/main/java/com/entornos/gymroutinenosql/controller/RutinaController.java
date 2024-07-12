@@ -44,7 +44,7 @@ public class RutinaController {
     }
 
     //Eliminar una rutina por el id de la rutina
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Rutina> eliminarRutina(@PathVariable String id){
         Rutina obj = rutinaService.buscarRutina(id);
         if (obj != null) {

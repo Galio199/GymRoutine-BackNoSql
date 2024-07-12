@@ -52,7 +52,11 @@ public class UsuarioService implements IUsuarioService {
     //Verificar si se encontro un usuario con ese username y contraseña
     @Override
     public Boolean validarUsuario(String username, String password) {
-        var auth = autorizacionRepository.findByUsuarioUsernameAndClave(username, password);
+        String idUsuario = usuarioRepository.findByUsername(username).getId();
+        if (idUsuario == null) {
+            throw new RuntimeException("Usuario o contraseña erronea");
+        }
+        var auth = autorizacionRepository.findByIdUsuarioAndClave(idUsuario, password);
         if (auth == null) {
             throw new RuntimeException("Usuario o contraseña erronea");
         }

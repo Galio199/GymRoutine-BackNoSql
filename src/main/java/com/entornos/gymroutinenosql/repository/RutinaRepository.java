@@ -2,7 +2,6 @@ package com.entornos.gymroutinenosql.repository;
 
 import com.entornos.gymroutinenosql.model.Rutina;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,20 +9,25 @@ import java.util.List;
 @Repository
 
 public interface RutinaRepository extends MongoRepository<Rutina, String> {
-    /*
+
+    //Todas las rutinas se listas por dificultad
+
     //Listar todas las rutinas ordenadas por dificultad
     List<Rutina> findAllByOrderByOrdenDificultad();
-     */
 
-    //Listar las rutinas publicadas filtradas por el tipo y/o la dificultad ordenadas por dificultad
-    @Query("{ $and: [ { $or: [ { 'tipoRutina': { $elemMatch: { $in: ?0 } } }, { ?0: null } ] }, " +
-            "{ $or: [ { 'dificultad': ?1 }, { ?1: null } ] } ] }")
-    List<Rutina>findByTipoRutinaAndDificultadRutinaAndPublicadaOrderByOrdenDificultad(String tipoRutina, String dificultadRutina, boolean publicada);
+    //Listar las rutinas filtrando por dificultad
+    List<Rutina> findByDificultadRutinaOrderByOrdenDificultad(String dificultadRutina);
+
+    //Listar las rutinas filtrando por tipo
+    List<Rutina> findByTipoRutinaContainingOrderByOrdenDificultad(String tipoRutina);
+
+    //Listar las rutinas filtrando por tipo y dificultad
+    List<Rutina> findByTipoRutinaContainingAndDificultadRutinaOrderByOrdenDificultad(String tipoRutina, String dificultad);
 
     //Listar las rutinas publicadas que ha creado un usuario por el username
-    List<Rutina> findByUsernameAndPublicada(String username, boolean publicada);
+    List<Rutina> findByUsernameAndPublicadaOrderByOrdenDificultad(String username, boolean publicada);
 
     //Listar las rutinas que ha creado un usuario por el id del usuario
-    List<Rutina> findByIdUsuario(String idUsuario);
+    List<Rutina> findByIdUsuarioOrderByOrdenDificultad(String idUsuario);
 
 }
