@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.mongodb.core.mapping.FieldType;
 
 import java.time.LocalDateTime;
 
@@ -18,6 +19,7 @@ public class Membresia {
 
     @Id
     private String id;
+    @Field(name = "id_usuario", targetType = FieldType.OBJECT_ID)
     private String idUsuario;
     @Field("fecha_inicio")
     private LocalDateTime fechaInicio;

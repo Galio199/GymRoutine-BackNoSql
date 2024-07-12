@@ -16,7 +16,7 @@ public class UsuarioController {
     @Autowired
     IUsuarioService usuarioService;
 
-    //Guardar un nuevo usuario o actualizaruno existente
+    //Guardar un nuevo usuario o actualizar uno existente
     @PostMapping("/")
     public ResponseEntity<Usuario> guardarUsuario(@RequestBody UsuarioDTO usuario) {
         return new ResponseEntity<>(usuarioService.guardarUsuario(usuario), HttpStatus.OK);

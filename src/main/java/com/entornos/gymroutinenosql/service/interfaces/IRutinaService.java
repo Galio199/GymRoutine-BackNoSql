@@ -6,16 +6,16 @@ import java.util.List;
 
 public interface IRutinaService {
 
-    //Listar las rutinas filtradas por el tipo y/o la dificultad ordenadas por dificultad
+    //Listar las rutinas publicadas filtradas por el tipo y/o la dificultad ordenadas por dificultad
     List<Rutina> listarRutinas(String tipoRutina, String dificultadRutina);
 
-    //Listar las rutinas que ha creado otro usuario por el username
+    //Listar las rutinas publicadas que ha creado otro usuario por el username
     List<Rutina> listarRutinasByUsername(String username);
 
     //Listar las rutinas por el id del usuario loggeado
     List<Rutina> listarRutinasByIdUsuario(String idUsuario);
 
-    //Guardar una rutina o actualizar una existente
+    //Guardar una rutina o actualizar una existente<
     Rutina guardarRutina(Rutina rutina);
 
     //Eliminar una rutina por el id

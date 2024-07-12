@@ -4,10 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.mongodb.core.mapping.FieldType;
 
 import java.time.LocalDateTime;
 
@@ -20,6 +20,7 @@ public class Autorizacion {
 
     @Id
     private String id;
+    @Field(name = "id_usuario", targetType = FieldType.OBJECT_ID)
     private String idUsuario;
     private String clave;
     @Field("fecha_inicio")
@@ -29,6 +30,6 @@ public class Autorizacion {
 
     //Relaciones
     @DBRef(lazy = true)
-    @Transient
     private Usuario usuario;
+
 }

@@ -15,13 +15,13 @@ public interface RutinaRepository extends MongoRepository<Rutina, String> {
     List<Rutina> findAllByOrderByOrdenDificultad();
      */
 
-    //Listar todas las rutinas filtradas por el tipo y/o la dificultad ordenadas por dificultad
+    //Listar las rutinas publicadas filtradas por el tipo y/o la dificultad ordenadas por dificultad
     @Query("{ $and: [ { $or: [ { 'tipoRutina': { $elemMatch: { $in: ?0 } } }, { ?0: null } ] }, " +
             "{ $or: [ { 'dificultad': ?1 }, { ?1: null } ] } ] }")
-    List<Rutina>findByTipoRutinaAndDificultadRutinaOrderByOrdenDificultad(String tipoRutina, String dificultadRutina);
+    List<Rutina>findByTipoRutinaAndDificultadRutinaAndPublicadaOrderByOrdenDificultad(String tipoRutina, String dificultadRutina, boolean publicada);
 
-    //Listar las rutinas que ha creado un usuario por el username
-    List<Rutina> findByUsername(String username);
+    //Listar las rutinas publicadas que ha creado un usuario por el username
+    List<Rutina> findByUsernameAndPublicada(String username, boolean publicada);
 
     //Listar las rutinas que ha creado un usuario por el id del usuario
     List<Rutina> findByIdUsuario(String idUsuario);

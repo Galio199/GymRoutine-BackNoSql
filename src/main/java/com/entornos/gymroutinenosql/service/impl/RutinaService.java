@@ -16,16 +16,16 @@ public class RutinaService implements IRutinaService {
     @Autowired
     RutinaRepository rutinaRepository;
 
-    //Listar las rutinas filtradas por el tipo y/o la dificultad ordenadas por dificultad
+    //Listar las rutinas publicadas filtradas por el tipo y/o la dificultad ordenadas por dificultad
     @Override
     public List<Rutina> listarRutinas(String tipoRutina, String dificultadRutina) {
-        return rutinaRepository.findByTipoRutinaAndDificultadRutinaOrderByOrdenDificultad(tipoRutina, dificultadRutina);
+        return rutinaRepository.findByTipoRutinaAndDificultadRutinaAndPublicadaOrderByOrdenDificultad(tipoRutina, dificultadRutina, true);
     }
 
-    //Listar las rutinas que ha creado otro usuario por el username
+    //Listar las rutinas publicadas que ha creado otro usuario por el username
     @Override
     public List<Rutina> listarRutinasByUsername(String username) {
-        return rutinaRepository.findByUsername(username);
+        return rutinaRepository.findByUsernameAndPublicada(username, true);
     }
 
     //Listar las rutinas por el id del usuario loggeado

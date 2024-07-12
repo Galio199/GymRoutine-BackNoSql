@@ -16,5 +16,5 @@ public class DificultadEjercicio {
     @Id
     private String id;
     private String nombre;
-
+    private int orden;
 }

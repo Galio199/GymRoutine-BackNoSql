@@ -26,13 +26,13 @@ public class RutinaController {
     }
 
     //Listar las rutinas del usuario por el id del usuario loggeado
-    @GetMapping("/list/{idUsuario}")
+    @GetMapping("/listByIdUsuario/{idUsuario}")
     public List<Rutina> listarRutinasByIdUsuario(@PathVariable String idUsuario){
         return rutinaService.listarRutinasByIdUsuario(idUsuario);
     }
 
     //Listar rutinas de otros usuario por el username
-    @GetMapping("/list/{username}")
+    @GetMapping("/listByUsername/{username}")
     public List<Rutina> listarRutinasByUsername(@PathVariable String username){
         return rutinaService.listarRutinasByUsername(username);
     }
@@ -44,7 +44,7 @@ public class RutinaController {
     }
 
     //Eliminar una rutina por el id de la rutina
-    @DeleteMapping("/{id}")
+    @DeleteMapping("delete/{id}")
     public ResponseEntity<Rutina> eliminarRutina(@PathVariable String id){
         Rutina obj = rutinaService.buscarRutina(id);
         if (obj != null) {
